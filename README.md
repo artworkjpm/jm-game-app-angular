@@ -1,6 +1,6 @@
 https://artworkjpm.github.io/jm-game-app-angular/
 
-ng build --prod=true --output-path=docs
+ng build --prod=true --output-path=docs --base-href "jm-game-app-angular"
 
 # JmGameAppAngular
 
