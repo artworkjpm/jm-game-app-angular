@@ -1,4 +1,23 @@
-<input name="imageType" type="text" #inputx (keyup.enter)="submitSearch(inputx.value)" />
-<button (click)="submitSearch(inputx.value)">Search</button>
+<div class="container">
+  <div class="col d-flex justify-content-center">
+    <input
+      name="imageType"
+      type="text"
+      #inputx
+      (keyup.enter)="submitSearch(inputx.value)"
+    />
+    <button (click)="submitSearch(inputx.value)">Search</button>
+  </div>
 
-<img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+  <div class="row no-gutters justify-content-center">
+    <div class="col text-center">
+      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+    </div>
+    <div class="col text-center">
+      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+    </div>
+    <div class="col text-center">
+      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+    </div>
+  </div>
+</div>

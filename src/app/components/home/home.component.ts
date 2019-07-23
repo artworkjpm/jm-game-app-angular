@@ -24,6 +24,14 @@ export class HomeComponent implements OnInit {
 
   getImages() {
     let searchItem = this.searchInput;
-    return this.appService.getImages(searchItem).subscribe(data => ((this.Images = data.hits[0]), console.log(this.Images)), error => console.log(error));
+    return this.appService
+      .getImages(searchItem)
+      .subscribe(
+        data => (
+          (this.Images = data.hits[Math.floor(Math.random() * 20)]),
+          console.log(data.hits, data.hits.length)
+        ),
+        error => console.log(error)
+      );
   }
 }
