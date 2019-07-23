@@ -1,19 +1,15 @@
+# JmGameAppAngular
+
 https://artworkjpm.github.io/jm-game-app-angular/
 
 ng build --prod=true --output-path=docs --base-href "jm-game-app-angular"
 
-# JmGameAppAngular
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
-
-
-
-
 
 ## Idea for game
 
-Show 3 photos of real objects, show one cartoon picture of one of the items. 
-Sally needs to touch what photo is the cartoon image. 
+Show 3 photos of real objects, show one cartoon picture of one of the items.
+Sally needs to touch what photo is the cartoon image.
 
 For each touch there should be a voice trigering the name of the item touched, and when the page loads a voice that says the item
 
@@ -22,17 +18,7 @@ For each touch there should be a voice trigering the name of the item touched, a
 ///Cartoons
 Car, bicycle, fork, spoon, plate, shoes, hat, carrito, bottle, glass, sunglasses
 
-
 ///photos
-
-
-
-
-
-
-
-
-
 
 ## Development server
 
