@@ -6,6 +6,34 @@ ng build --prod=true --output-path=docs --base-href "jm-game-app-angular"
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
 
+
+
+
+
+## Idea for game
+
+Show 3 photos of real objects, show one cartoon picture of one of the items. 
+Sally needs to touch what photo is the cartoon image. 
+
+For each touch there should be a voice trigering the name of the item touched, and when the page loads a voice that says the item
+
+//Get images
+
+///Cartoons
+Car, bicycle, fork, spoon, plate, shoes, hat, carrito, bottle, glass, sunglasses
+
+
+///photos
+
+
+
+
+
+
+
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

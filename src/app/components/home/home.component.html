@@ -1,0 +1,4 @@
+<input name="imageType" type="text" #inputx (keyup.enter)="submitSearch(inputx.value)" />
+<button (click)="submitSearch(inputx.value)">Search</button>
+
+<img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
