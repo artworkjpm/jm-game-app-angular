@@ -8,12 +8,13 @@ import { AppService } from "../../services/api.service";
 })
 export class HomeComponent implements OnInit {
   Images: any;
+  FixedImage: any;
   searchInput: string;
 
   constructor(public appService: AppService) {}
 
   ngOnInit() {
-    // this.getImages();
+    this.getFixedImage();
   }
 
   submitSearch(text: string) {
@@ -33,5 +34,11 @@ export class HomeComponent implements OnInit {
         ),
         error => console.log(error)
       );
+  }
+
+  getFixedImage() {
+    return this.appService.fixedImage().subscribe(data => {
+      this.FixedImage = data.hits[0];
+    });
   }
 }
