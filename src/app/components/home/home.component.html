@@ -1,25 +1,32 @@
 <div class="container">
   <div class="col d-flex justify-content-center">
-    <input
-      name="imageType"
-      type="text"
-      #inputx
-      (keyup.enter)="submitSearch(inputx.value)"
-    />
+    <input name="imageType" type="text" #inputx (keyup.enter)="submitSearch(inputx.value)" />
     <button (click)="submitSearch(inputx.value)">Search</button>
   </div>
 
   <div class="row no-gutters justify-content-center">
-    <div class="col text-center">
-      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+    <div class="col text-center random" (click)="rightFire()">
+      <img src="{{ PhotoWinner?.previewURL }}" alt="{{ PhotoWinner?.tags }}" />
+
+      <div class="alert alert-success" [ngClass]="winner ? 'success' : 'fail'" *ngIf="winner" (click)="hideit()">
+        Correct!
+      </div>
     </div>
-    <div class="col text-center">
-      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+
+    <div class="col text-center random" (click)="wrong1Fire()">
+      <img src="{{ PhotoRandom1?.previewURL }}" alt="{{ PhotoRandom1?.tags }}" />
+      <div class="alert alert-danger wrong1" role="alert" *ngIf="wrong1">
+        Wrong!
+      </div>
     </div>
-    <div class="col text-center">
-      <img src="{{ Images?.previewURL }}" alt="{{ Images?.tags }}" />
+
+    <div class="col text-center random" (click)="wrong2Fire()">
+      <img src="{{ PhotoRandom2?.previewURL }}" alt="{{ PhotoRandom2?.tags }}" />
+      <div class="alert alert-danger" role="alert" *ngIf="wrong2">
+        Wrong!
+      </div>
     </div>
   </div>
 
-  <img src="{{ FixedImage.previewURL }}" alt="" />
+  <div class="col d-flex justify-content-center"><img src="{{ CartoonImage?.previewURL }}" alt="{{ CartoonImage?.tags }}" /></div>
 </div>
