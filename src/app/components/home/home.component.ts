@@ -14,6 +14,7 @@ const RandomMath = () => {
 })
 export class HomeComponent implements OnInit {
   CartoonImage: { tags: string };
+  CartoonTags: any;
   PhotoWinner: string;
   PhotoRandom1: string;
   PhotoRandom2: string;
@@ -81,23 +82,38 @@ export class HomeComponent implements OnInit {
     return randomNumber;
   }
 
-  PhotoWinnerChooser() {
-    let searchItem = this.searchInput;
-    this.appService.PhotoWinnerChooser(searchItem).subscribe(data => (this.PhotoWinner = data.hits[RandomMath()]), error => console.log(error));
-
-    this.appService.PhotoWinnerChooser("").subscribe(data => ((this.PhotoRandom1 = data.hits[RandomMath()]), console.log(this.PhotoRandom1)), error => console.log(error));
-
-    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[RandomMath()]), error => console.log(error));
-  }
-
   CartoonChooser() {
     let searchItem = this.searchInput;
     return this.appService.CartoonChooser(searchItem).subscribe(
       data => {
         this.CartoonImage = data.hits[RandomMath()];
-        console.log("tags: " + this.CartoonImage.tags);
+        this.CartoonTags = this.CartoonImage.tags.split(",").splice(-1);
+        console.log("tags: " + this.CartoonTags);
       },
       error => console.log(error)
     );
+  }
+
+  PhotoWinnerChooser() {
+    //get last word from tags
+
+    let searchItem: string;
+    if (this.searchInput === "") {
+      var CartoonTagsCleaned = this.CartoonTags;
+      console.log("tag cleaned: " + CartoonTagsCleaned);
+      searchItem = CartoonTagsCleaned;
+    } else {
+      searchItem = this.searchInput;
+    }
+    this.appService.PhotoWinnerChooser(searchItem).subscribe(
+      data => {
+        this.PhotoWinner = data.hits[RandomMath()];
+      },
+      error => console.log(error)
+    );
+
+    this.appService.PhotoWinnerChooser("").subscribe(data => ((this.PhotoRandom1 = data.hits[RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
+
+    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[RandomMath()]), error => console.log(error));
   }
 }
