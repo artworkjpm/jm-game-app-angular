@@ -13,7 +13,7 @@ const RandomMath = () => {
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  CartoonImage: string;
+  CartoonImage: { tags: string };
   PhotoWinner: string;
   PhotoRandom1: string;
   PhotoRandom2: string;
@@ -38,19 +38,23 @@ export class HomeComponent implements OnInit {
 
   rightFire() {
     this.winner = !this.winner;
+    this.wrong1 = false;
+    this.wrong2 = false;
   }
   wrong1Fire() {
     this.wrong1 = !this.wrong1;
-    setTimeout(() => {
+    this.wrong2 = false;
+    /*  setTimeout(() => {
       $(".wrong1").hide(), (this.wrong1 = false);
-    }, 1000);
+    }, 1000); */
   }
 
   wrong2Fire() {
     this.wrong2 = !this.wrong2;
-    setTimeout(() => {
+    this.wrong1 = false;
+    /*  setTimeout(() => {
       $(".wrong2").hide(), (this.wrong2 = false);
-    }, 1000);
+    }, 1000); */
   }
 
   getFixedImage() {
@@ -62,31 +66,38 @@ export class HomeComponent implements OnInit {
   submitSearch(text: string) {
     console.log(text);
     this.searchInput = text;
+
+    this.winner = false;
     this.wrong1 = false;
+    this.wrong2 = false;
     this.CartoonChooser();
     this.PhotoWinnerChooser();
     this.randomize();
   }
 
-  CartoonChooser() {
-    let searchItem = this.searchInput;
-    return this.appService
-      .CartoonChooser(searchItem)
-      .subscribe(data => ((this.CartoonImage = data.hits[Math.floor(Math.random() * 20)]), console.log(this.CartoonImage, data)), error => console.log(error));
-  }
-
   RandomMath() {
-    return Math.floor(Math.random() * 20);
+    let randomNumber = Math.floor(Math.random() * 200);
+    console.log("randomNumber: " + randomNumber);
+    return randomNumber;
   }
 
   PhotoWinnerChooser() {
     let searchItem = this.searchInput;
-    this.appService
-      .PhotoWinnerChooser(searchItem)
-      .subscribe(data => ((this.PhotoWinner = data.hits[RandomMath()]), console.log(this.PhotoWinner, data)), error => console.log(error));
+    this.appService.PhotoWinnerChooser(searchItem).subscribe(data => (this.PhotoWinner = data.hits[RandomMath()]), error => console.log(error));
 
-    this.appService.PhotoWinnerChooser("dog").subscribe(data => ((this.PhotoRandom1 = data.hits[RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
+    this.appService.PhotoWinnerChooser("").subscribe(data => ((this.PhotoRandom1 = data.hits[RandomMath()]), console.log(this.PhotoRandom1)), error => console.log(error));
 
-    this.appService.PhotoWinnerChooser("cat").subscribe(data => ((this.PhotoRandom2 = data.hits[RandomMath()]), console.log(this.PhotoRandom2, data)), error => console.log(error));
+    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[RandomMath()]), error => console.log(error));
+  }
+
+  CartoonChooser() {
+    let searchItem = this.searchInput;
+    return this.appService.CartoonChooser(searchItem).subscribe(
+      data => {
+        this.CartoonImage = data.hits[RandomMath()];
+        console.log("tags: " + this.CartoonImage.tags);
+      },
+      error => console.log(error)
+    );
   }
 }

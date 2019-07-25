@@ -15,12 +15,12 @@ export class AppService {
   }
 
   CartoonChooser(searchItem: string): Observable<any> {
-    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=illustration";
+    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=illustration" + "&per_page=200";
     return this.httpClient.get(URL);
   }
 
   PhotoWinnerChooser(searchItem: string): Observable<any> {
-    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=photo";
+    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=photo" + "&per_page=200";
     return this.httpClient.get(URL);
   }
 }
