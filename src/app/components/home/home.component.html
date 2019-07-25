@@ -8,9 +8,7 @@
     <div class="col text-center random" (click)="rightFire()">
       <img src="{{ PhotoWinner?.previewURL }}" alt="{{ PhotoWinner?.tags }}" />
 
-      <div class="alert alert-success" [ngClass]="winner ? 'success' : 'fail'" *ngIf="winner" (click)="hideit()">
-        Correct!
-      </div>
+      <div [ngClass]="winner ? 'success' : 'fail'" *ngIf="winner"></div>
     </div>
 
     <div class="col text-center random" (click)="wrong1Fire()">

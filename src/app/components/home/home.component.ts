@@ -39,24 +39,18 @@ export class HomeComponent implements OnInit {
   rightFire() {
     this.winner = !this.winner;
   }
-
-  hidit() {
-    $(".alert-success").hide();
-    this.winner = false;
-  }
-
   wrong1Fire() {
     this.wrong1 = !this.wrong1;
     setTimeout(() => {
       $(".wrong1").hide(), (this.wrong1 = false);
-    }, 2000);
+    }, 1000);
   }
 
   wrong2Fire() {
     this.wrong2 = !this.wrong2;
     setTimeout(() => {
       $(".wrong2").hide(), (this.wrong2 = false);
-    }, 2000);
+    }, 1000);
   }
 
   getFixedImage() {
