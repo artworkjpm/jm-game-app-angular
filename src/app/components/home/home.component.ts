@@ -13,11 +13,11 @@ const RandomMath = () => {
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  CartoonImage: { tags: string };
+  CartoonImage: { previewURL: string; tags: string };
   CartoonTags: any;
-  PhotoWinner: string;
-  PhotoRandom1: string;
-  PhotoRandom2: string;
+  PhotoWinner: { previewURL: string; tags: string };
+  PhotoRandom1: { previewURL: string; tags: string };
+  PhotoRandom2: { previewURL: string; tags: string };
   FixedImage: any;
   searchInput: string;
   winner: boolean = false;
@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
 
   submitSearch(text: string) {
-    console.log(text);
+    console.log("search text: " + text);
     this.searchInput = text;
 
     this.winner = false;

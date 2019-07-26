@@ -10,7 +10,7 @@ export class AppService {
   constructor(public httpClient: HttpClient) {}
 
   RandomMath() {
-    let randomNumber = Math.floor(Math.random() * 10);
+    let randomNumber = Math.floor(Math.random() * 20);
     console.log("randomNumber: " + randomNumber);
     return randomNumber;
   }
@@ -21,12 +21,12 @@ export class AppService {
   }
 
   CartoonChooser(searchItem: string): Observable<any> {
-    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=illustration" + "&per_page=20" + "&page=`${this.RandomMath()}`";
+    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=illustration" + "&per_page=50" + "&page=`${this.RandomMath()}`";
     return this.httpClient.get(URL);
   }
 
   PhotoWinnerChooser(searchItem: string): Observable<any> {
-    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=photo" + "&per_page=20" + "&page=`${this.RandomMath()}`";
+    const URL = urlPath + API_KEY + "&q=" + encodeURIComponent(searchItem) + "&image_type=photo" + "&per_page=50" + "&page=`${this.RandomMath()}`";
     return this.httpClient.get(URL);
   }
 }
