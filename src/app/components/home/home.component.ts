@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     this.wrong1 = false;
     this.wrong2 = false;
     this.CartoonChooser();
-    this.PhotoWinnerChooser();
+
     this.randomize();
   }
 
@@ -88,7 +88,8 @@ export class HomeComponent implements OnInit {
       data => {
         this.CartoonImage = data.hits[RandomMath()];
         this.CartoonTags = this.CartoonImage.tags.split(",").splice(-1);
-        console.log("tags: " + this.CartoonTags);
+        console.log("tags1: " + this.CartoonTags);
+        this.PhotoWinnerChooser();
       },
       error => console.log(error)
     );
@@ -96,11 +97,10 @@ export class HomeComponent implements OnInit {
 
   PhotoWinnerChooser() {
     //get last word from tags
-
     let searchItem: string;
     if (this.searchInput === "") {
       var CartoonTagsCleaned = this.CartoonTags;
-      console.log("tag cleaned: " + CartoonTagsCleaned);
+      console.log("tag cleaned2: " + CartoonTagsCleaned);
       searchItem = CartoonTagsCleaned;
     } else {
       searchItem = this.searchInput;
