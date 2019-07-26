@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit {
     this.wrong1 = false;
     this.wrong2 = false;
     this.CartoonChooser();
-
     this.randomize();
   }
 
@@ -113,5 +112,9 @@ export class HomeComponent implements OnInit {
       .subscribe(data => ((this.PhotoRandom1 = data.hits[this.RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
 
     this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[this.RandomMath()]), error => console.log(error));
+  }
+
+  ngAfterViewInit() {
+    this.submitSearch("");
   }
 }
