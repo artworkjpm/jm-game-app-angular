@@ -3,10 +3,6 @@ import { AppService } from "../../services/api.service";
 
 declare var $: any;
 
-const RandomMath = () => {
-  return Math.floor(Math.random() * 20);
-};
-
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -77,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
   RandomMath() {
-    let randomNumber = Math.floor(Math.random() * 200);
+    let randomNumber = Math.floor(Math.random() * 50);
     console.log("randomNumber: " + randomNumber);
     return randomNumber;
   }
@@ -86,7 +82,7 @@ export class HomeComponent implements OnInit {
     let searchItem = this.searchInput;
     return this.appService.CartoonChooser(searchItem).subscribe(
       data => {
-        this.CartoonImage = data.hits[RandomMath()];
+        this.CartoonImage = data.hits[this.RandomMath()];
         this.CartoonTags = this.CartoonImage.tags.split(",").splice(-1);
         console.log("tags1: " + this.CartoonTags);
         this.PhotoWinnerChooser();
@@ -107,13 +103,15 @@ export class HomeComponent implements OnInit {
     }
     this.appService.PhotoWinnerChooser(searchItem).subscribe(
       data => {
-        this.PhotoWinner = data.hits[RandomMath()];
+        this.PhotoWinner = data.hits[this.RandomMath()];
       },
       error => console.log(error)
     );
 
-    this.appService.PhotoWinnerChooser("").subscribe(data => ((this.PhotoRandom1 = data.hits[RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
+    this.appService
+      .PhotoWinnerChooser("")
+      .subscribe(data => ((this.PhotoRandom1 = data.hits[this.RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
 
-    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[RandomMath()]), error => console.log(error));
+    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[this.RandomMath()]), error => console.log(error));
   }
 }
