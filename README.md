@@ -4,6 +4,8 @@ https://artworkjpm.github.io/jm-game-app-angular/
 
 ng build --prod --output-path docs --base-href /jm-game-app-angular/
 ng build --prod --output-path docs --base-href /<project_name>/
+
+NOT:
 ng build --prod=true --output-path=docs --base-href "home"
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
