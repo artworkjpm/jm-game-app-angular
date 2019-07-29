@@ -6,7 +6,7 @@ const API_KEY = "538780-df31edf39b820c4de87a19f6f";
 const urlPath = "https://pixabay.com/api/?key=";
 
 @Injectable()
-export class AppService {
+export class ApiService {
   constructor(public httpClient: HttpClient) {}
 
   RandomMath() {

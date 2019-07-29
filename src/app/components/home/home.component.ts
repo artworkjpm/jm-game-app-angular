@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AppService } from "../../services/api.service";
+import { ApiService } from "../../services/api.service";
 
 declare var $: any;
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   wrong1: boolean = false;
   wrong2: boolean = false;
 
-  constructor(public appService: AppService) {}
+  constructor(public apiService: ApiService) {}
 
   ngOnInit(): void {}
   //using jquery to randomize the three photo options
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFixedImage() {
-    return this.appService.fixedImage().subscribe(data => {
+    return this.apiService.fixedImage().subscribe(data => {
       this.FixedImage = data.hits[0];
     });
   }
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
 
   CartoonChooser() {
     let searchItem = this.searchInput;
-    return this.appService.CartoonChooser(searchItem).subscribe(
+    return this.apiService.CartoonChooser(searchItem).subscribe(
       data => {
         this.CartoonImage = data.hits[this.RandomMath()];
         this.CartoonTags = this.CartoonImage.tags.split(",").splice(-1);
@@ -100,18 +100,18 @@ export class HomeComponent implements OnInit {
     } else {
       searchItem = this.searchInput;
     }
-    this.appService.PhotoWinnerChooser(searchItem).subscribe(
+    this.apiService.PhotoWinnerChooser(searchItem).subscribe(
       data => {
         this.PhotoWinner = data.hits[this.RandomMath()];
       },
       error => console.log(error)
     );
 
-    this.appService
+    this.apiService
       .PhotoWinnerChooser("")
       .subscribe(data => ((this.PhotoRandom1 = data.hits[this.RandomMath()]), console.log(this.PhotoRandom1, data)), error => console.log(error));
 
-    this.appService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[this.RandomMath()]), error => console.log(error));
+    this.apiService.PhotoWinnerChooser("").subscribe(data => (this.PhotoRandom2 = data.hits[this.RandomMath()]), error => console.log(error));
   }
 
   ngAfterViewInit() {
